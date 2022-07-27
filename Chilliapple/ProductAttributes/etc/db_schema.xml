@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="chilliapple_coin_highlights" resource="default">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"  comment="Entity Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" comment="Product id"/>
+        <column xsi:type="text" name="coin_highlight" nullable="false" comment="Product Coin Highlight"/>
+        <column xsi:type="int" name="sort_order" padding="10" unsigned="false" nullable="true" comment="Sort Order"/>
+
+        <constraint xsi:type="foreign" referenceId="CHILLIAPPLE_COIN_HIGHLIGHTS_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID" table="chilliapple_coin_highlights"
+                    column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="CHILLIAPPLE_COIN_HIGHLIGHTS_SORT_ORDER_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+            <column name="sort_order"/>
+        </index>
+    </table>
+
+    <table name="chilliapple_encyclopedia_products" resource="default">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"  comment="Entity Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" comment="Product id"/>
+        <column xsi:type="text" name="enc_related_product" nullable="false" comment="Encyclopedia Related Product"/>
+        <column xsi:type="int" name="sort_order" padding="10" unsigned="false" nullable="true" comment="Sort Order"/>
+
+        <constraint xsi:type="foreign" referenceId="CHILLIAPPLE_ENCYCLOPEDIA_PRODUCTS_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID" table="chilliapple_encyclopedia_products"
+                    column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="CHILLIAPPLE_ENCYCLOPEDIA_SORT_ORDER_PRODUCTS_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+            <column name="sort_order"/>
+        </index>
+    </table>
+
+</schema>

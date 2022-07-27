@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+            <referenceBlock name="product.info.stock.sku">
+                <block class="Chilliapple\ProductAttributes\Block\Product\View\CoinHighlights" name="coin-highlights" as="coin-highlights" template="Chilliapple_ProductAttributes::product/view/coin-highlights.phtml" after="product.price.final"/>
+            </referenceBlock>
+
+            <referenceBlock name="product.info.details">
+                <block class="Magento\Catalog\Block\Product\View" name="coin-specification.tab" as="coin-specification" template="Chilliapple_ProductAttributes::product/view/coin-specification.phtml" group="detailed_info">
+                    <arguments>
+                        <argument name="title" translate="true" xsi:type="string">Coin Specification</argument>
+                        <argument name="sort_order" xsi:type="string">40</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Catalog\Block\Product\View" name="deliveryinfo.tab" as="deliveryinfo" template="Chilliapple_ProductAttributes::product/view/deliveryinfo.phtml" group="detailed_info">
+                    <arguments>
+                        <argument name="title" translate="true" xsi:type="string">Delivery info</argument>
+                        <argument name="sort_order" xsi:type="string">50</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+    </body>
+</page>

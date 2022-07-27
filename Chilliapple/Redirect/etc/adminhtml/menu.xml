@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <add id="Chilliapple_Redirect::redirect_redirect"
+             title="Redirects"
+             module="Chilliapple_Redirect"
+             sortOrder="60"
+             action="chilliapple_redirect/redirect"
+             resource="Chilliapple_Redirect::redirect_redirect"
+             parent="Magento_Backend::marketing_seo"
+        />
+        <add id="Chilliapple_Redirect::redirect_import"
+             title="Import Redirects"
+             module="Chilliapple_Redirect"
+             sortOrder="70"
+             action="chilliapple_redirect/redirect/import"
+             resource="Chilliapple_Redirect::redirect_redirect"
+             parent="Magento_Backend::marketing_seo"
+        />
+    </menu>
+</config>

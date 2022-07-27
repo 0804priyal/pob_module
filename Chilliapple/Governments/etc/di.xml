@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Chilliapple\Governments\Api\GovernmentRepositoryInterface" type="Chilliapple\Governments\Model\GovernmentRepo"/>
+    <preference for="Chilliapple\Governments\Api\GovernmentListRepositoryInterface" type="Chilliapple\Governments\Model\GovernmentListRepo"/>
+    <preference for="Chilliapple\Governments\Api\Data\GovernmentInterface" type="Chilliapple\Governments\Model\Government"/>
+    <preference for="Chilliapple\Governments\Api\Data\GovernmentSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Chilliapple\Governments\Api\Data\GovernmentInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">governments_government</item>
+                    <item name="identifierField" xsi:type="string">government_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- configure resource models -->
+    <type name="Chilliapple\Governments\Model\ResourceModel\Government">
+        <arguments>
+            <argument name="storeTable" xsi:type="string">governments_government_store</argument>
+            <argument name="interfaceClass" xsi:type="string">Chilliapple\Governments\Api\Data\GovernmentInterface</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="governments_government_listing_data_source" xsi:type="string">ChilliappleGovernmentsGovernmentGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Governments\Model\ResourceModel\Government\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">governments_government</argument>
+            <argument name="model" xsi:type="string">Chilliapple\Governments\Model\Government</argument>
+            <argument name="resourceModel" xsi:type="string">Chilliapple\Governments\Model\ResourceModel\Government</argument>
+            <argument name="idFieldName" xsi:type="string">government_id</argument>
+            <argument name="eventPrefix" xsi:type="string">chilliapple_governments_government_collection</argument>
+            <argument name="eventObject" xsi:type="string">government_collection</argument>
+            <argument name="interfaceClass" xsi:type="string">Chilliapple\Governments\Api\Data\GovernmentInterface</argument>
+                <argument name="storeTable" xsi:type="string">governments_government_store</argument>
+        </arguments>
+    </type>
+    <virtualType name="ChilliappleGovernmentsGovernmentGridCollection" type="Chilliapple\Governments\Model\ResourceModel\Government\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">governments_government</argument>
+            <argument name="model" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\Document</argument>
+            <argument name="resourceModel" xsi:type="string">Chilliapple\Governments\Model\ResourceModel\Government</argument>
+            <argument name="idFieldName" xsi:type="string">government_id</argument>
+            <argument name="eventPrefix" xsi:type="string">chilliapple_governments_government_collection</argument>
+            <argument name="eventObject" xsi:type="string">government_collection</argument>
+            <argument name="interfaceClass" xsi:type="string">Chilliapple\Governments\Api\Data\GovernmentInterface</argument>
+                <argument name="storeTable" xsi:type="string">governments_government_store</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GovernmentsGovernmentRelateStoreResourceReadHandler" type="Chilliapple\Governments\Model\ResourceModel\Relation\Store\ReadHandler">
+        <arguments>
+            <argument name="resource" xsi:type="object">Chilliapple\Governments\Model\ResourceModel\Government</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GovernmentsGovernmentRelateStoreResourceSaveHandler" type="Chilliapple\Governments\Model\ResourceModel\Relation\Store\SaveHandler">
+        <arguments>
+            <argument name="resource" xsi:type="object">Chilliapple\Governments\Model\ResourceModel\Government</argument>
+            <argument name="entityType" xsi:type="string">Chilliapple\Governments\Api\Data\GovernmentInterface</argument>
+            <argument name="storeTable" xsi:type="string">governments_government_store</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Chilliapple\Governments\Api\Data\GovernmentInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">GovernmentsGovernmentRelateStoreResourceReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">GovernmentsGovernmentRelateStoreResourceSaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">GovernmentsGovernmentRelateStoreResourceSaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="GovernmentsGovernmentImageInfo" type="Chilliapple\Governments\Model\FileInfo">
+        <arguments>
+            <argument name="filePath" xsi:type="string">governments/government/image</argument>
+        </arguments>
+    </virtualType>
+    <type name="Chilliapple\Governments\ViewModel\Formatter\Wysiwyg">
+        <arguments>
+            <argument name="filter" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Governments\ViewModel\Formatter">
+        <arguments>
+            <argument name="formatterMap" xsi:type="array">
+                <item name="text" xsi:type="object">Chilliapple\Governments\ViewModel\Formatter\Text</item>
+                <item name="editor" xsi:type="object">Chilliapple\Governments\ViewModel\Formatter\Wysiwyg</item>
+                <item name="image" xsi:type="object">Chilliapple\Governments\ViewModel\Formatter\Image</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

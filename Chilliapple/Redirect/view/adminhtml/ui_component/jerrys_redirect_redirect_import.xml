@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">chilliapple_redirect_redirect_import.redirect_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Redirect Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Chilliapple\Redirect\Block\Adminhtml\Button\Save"/>
+            <button name="save_and_continue" class="Chilliapple\Redirect\Block\Adminhtml\Button\SaveAndContinue"/>
+        </buttons>
+        <namespace>chilliapple_redirect_redirect_import</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>chilliapple_redirect_redirect_import.redirect_import_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="redirect_import_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="chilliapple_redirect/redirect/SaveImport"/>
+        </settings>
+        <dataProvider class="Chilliapple\Redirect\Model\Redirect\DataProvider" name="redirect_import_data_source">
+            <settings>
+                <requestFieldName>redirect_id</requestFieldName>
+                <primaryFieldName>redirect_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Redirect Information</label>
+        </settings>
+
+        <field name="file" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">redirect</item>
+                    <item name="notice" xsi:type="string" translate="true">Duplicate source url's will be replaced with new ones.</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Import Csv</label>
+                <dataScope>file</dataScope>
+                <elementTmpl>ui/form/element/uploader/uploader</elementTmpl>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="chilliapple_redirect/redirect_file/upload/field/file"/>
+                        </uploaderConfig>
+                        <previewTmpl>Chilliapple_Redirect/file-preview</previewTmpl>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+
+    </fieldset>
+</form>

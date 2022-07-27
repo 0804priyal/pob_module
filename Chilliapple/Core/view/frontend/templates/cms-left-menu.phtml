@@ -1,0 +1,24 @@
+<nav class="cms-nav">
+	<?php
+echo $this->getLayout()
+->createBlock('Magento\Cms\Block\Block')
+->setBlockId('cms_nav')
+->toHtml();
+?>
+</nav>
+<script type="text/javascript">
+        require([
+            "jquery",
+        ],function($) {
+        var currentUrl = window.location.href.split('?')[0];
+        var activeLink = $(".cms-nav").find('a[href="' + currentUrl + '"]');
+           if(!activeLink)
+           { 
+               return false; 
+           }
+           if(!activeLink.hasClass('active'))
+           {
+           	activeLink.addClass("active");
+           }
+        });
+</script>

@@ -1,0 +1,25 @@
+<?php $product = $block->getProduct(); ?>
+<table>
+
+	<tr><td><?php echo __('Metal'); ?></td><td><?= /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
+    $product,
+    $product->getMetal(),
+    'metal'
+) ?></td></tr>
+
+	<tr><td><?php echo __('Diameter'); ?></td><td><?= /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
+    $product,
+    $product->getDiameter(),
+    'diameter'
+) ?></td></tr>
+    <tr><td><?php echo __('Weight'); ?></td><td><?= /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
+    $product,
+    $product->getWeightDesc(),
+    'weight_desc'
+) ?></td></tr>
+	<tr><td><?php echo __('Issue Limit'); ?></td><td><?= /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
+    $product,
+    $product->getIssueLimit(),
+    'issue_limit'
+) ?></td></tr>
+</table>

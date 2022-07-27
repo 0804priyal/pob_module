@@ -1,0 +1,16 @@
+{
+    "chilliapple_redirect_redirect": {
+        "column": {
+            "redirect_id": true,
+            "source_url": true,
+            "dest_url": true,
+            "code": true
+        },
+        "index": {
+            "CHILLIAPPLE_REDIRECT_REDIRECT_SOURCE_URL_DEST_URL_CODE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

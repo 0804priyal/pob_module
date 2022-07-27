@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="governments_government" resource="default" engine="innodb" comment="Government Table">
+        <column xsi:type="smallint" name="government_id" padding="6" unsigned="false" nullable="false" identity="true" comment="Government ID"/>
+        <column xsi:type="varchar" name="title" length="255" nullable="false" comment="Government Title"/>
+        <column xsi:type="varchar" name="feature_image" length="255" nullable="true" comment="Government Image"/>
+        <column xsi:type="mediumtext" name="description" nullable="true" comment="Government Description"/>
+        <column xsi:type="varchar" name="government_link" length="255" nullable="true" comment="Government Government Link"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Government Is Active"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Government Meta Title"/>
+        <column xsi:type="text" name="meta_keywords" nullable="true" comment="Government Meta Keywords"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Government Meta Description"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Government Created at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Government Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="government_id"/>
+        </constraint>
+    </table>
+    <table name="governments_government_store" resource="default" engine="innodb" comment="Government Store Link Table">
+        <column xsi:type="smallint" name="government_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="government_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="GOVERNMENTS_GOVERNMENT_STORE_GOVERNMENT_ID_GOVERNMENTS_GOVERNMENT_GOVERNMENT_ID" table="governments_government_store"
+                    column="government_id" referenceTable="governments_government" referenceColumn="government_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="GOVERNMENTS_GOVERNMENT_STORE_STORE_STORE_ID" table="governments_government_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="GOVERNMENTS_GOVERNMENT_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

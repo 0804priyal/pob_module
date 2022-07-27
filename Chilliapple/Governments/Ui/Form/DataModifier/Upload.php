@@ -1,0 +1,110 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Chilliapple\Governments\Ui\Form\DataModifier;
+
+use Chilliapple\Governments\Model\FileInfo;
+use Chilliapple\Governments\Model\Uploader;
+use Chilliapple\Governments\Ui\Form\DataModifierInterface;
+use Magento\Framework\Model\AbstractModel;
+use Magento\Store\Model\StoreManagerInterface;
+use Psr\Log\LoggerInterface;
+
+class Upload implements DataModifierInterface
+{
+    /**
+     * @var array
+     */
+    private $fields;
+    /**
+     * @var Uploader
+     */
+    private $uploader;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+    /**
+     * @var FileInfo
+     */
+    private $fileInfo;
+    /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
+     * Upload constructor.
+     * @param array $fields
+     * @param Uploader $uploader
+     * @param LoggerInterface $logger
+     * @param FileInfo $fileInfo
+     * @param StoreManagerInterface $storeManager
+     */
+    public function __construct(
+        array $fields,
+        Uploader $uploader,
+        LoggerInterface $logger,
+        FileInfo $fileInfo,
+        StoreManagerInterface $storeManager
+    ) {
+        $this->fields = $fields;
+        $this->uploader = $uploader;
+        $this->logger = $logger;
+        $this->fileInfo = $fileInfo;
+        $this->storeManager = $storeManager;
+    }
+
+    /**
+     * @param AbstractModel $model
+     * @param array $data
+     * @return array
+     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function modifyData(AbstractModel $model, array $data): array
+    {
+        foreach ($this->fields as $field) {
+            $value = $data[$field] ?? '';
+            if ($value) {
+                if ($this->fileInfo->isExist($value)) {
+                    $stat = $this->fileInfo->getStat($value);
+                    $mime = $this->fileInfo->getMimeType($value);
+                    $beginsWithMediaDirectory = $this->fileInfo->isBeginsWithMediaDirectoryPath($value);
+                    $url = ($beginsWithMediaDirectory) ? $value : $this->getUrl($value);
+                    $data[$field] = [
+                        0 => [
+                            'name' => $value,
+                            'url' => $url,
+                            'size' => isset($stat) ? $stat['size'] : 0,
+                            'type' => $mime
+                        ]
+                    ];
+                }
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * @param $file
+     * @return bool|string
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getUrl($file)
+    {
+        if (is_string($file)) {
+            $store = $this->storeManager->getStore();
+            $mediaBaseUrl = $store->getBaseUrl(
+                \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
+            );
+            return $mediaBaseUrl . ltrim($this->fileInfo->getBaseFilePath(), '/') . '/' . ltrim($file, '/');
+        } else {
+            throw new \Magento\Framework\Exception\LocalizedException(
+                __('Something went wrong while getting the file url.')
+            );
+        }
+    }
+}

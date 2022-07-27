@@ -1,0 +1,32 @@
+{
+    "chilliapple_coin_highlights": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "coin_highlight": true,
+            "sort_order": true
+        },
+        "index": {
+            "CHILLIAPPLE_COIN_HIGHLIGHTS_PRODUCT_ID_SORT_ORDER": true
+        },
+        "constraint": {
+            "CHILLIAPPLE_COIN_HIGHLIGHTS_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "PRIMARY": true
+        }
+    },
+    "chilliapple_encyclopedia_products": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "enc_related_product": true,
+            "sort_order": true
+        },
+        "index": {
+            "CHILLIAPPLE_ENCYCLOPEDIA_PRODUCTS_PRODUCT_ID_SORT_ORDER": true
+        },
+        "constraint": {
+            "CHILLIAPPLE_ENCYCLOPEDIA_PRDS_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "PRIMARY": true
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<?php
+$highlights = $block->getHighlights();
+
+if($highlights->count()>0):
+?>
+<ul>
+<?php
+foreach ($highlights as $value) {
+	?>
+	<li class="coin-highlight"><?=$value->getData('coin_highlight')?></li>
+<?php
+}
+?>
+</ul>
+<?php
+ endif; ?>

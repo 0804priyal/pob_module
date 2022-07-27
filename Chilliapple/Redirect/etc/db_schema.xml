@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="chilliapple_redirect_redirect" resource="default" engine="innodb" comment="Redirect Table">
+        <column xsi:type="int" name="redirect_id" padding="10" unsigned="true" nullable="false" identity="true"  comment="Redirect ID"/>
+        <column xsi:type="text" name="source_url" nullable="true" comment="Redirect Source Url"/>
+        <column xsi:type="text" name="dest_url" nullable="true" comment="Redirect Destination Url"/>
+        <column xsi:type="varchar" name="code" length="255" nullable="true" comment="Redirect Code"/>
+        <index referenceId="CHILLIAPPLE_REDIRECT_REDIRECT_FULLTEXT" indexType="fulltext">
+            <column name="source_url" />
+            <column name="dest_url" />
+            <column name="code" />
+        </index>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="redirect_id"/>
+        </constraint>
+    </table>
+</schema>

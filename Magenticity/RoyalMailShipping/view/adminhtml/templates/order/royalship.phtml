@@ -1,0 +1,209 @@
+<?php
+$OrderNumber = $block->getOrderNumber();
+$OrderEntityId = $block->getOrderId();
+$ServiceType = $block->getServiceType();
+$serviceOfferingUrl = $this->getUrl('sales/order/ServiceOfferingUrl');
+$containerurl = $this->getUrl('sales/order/ContainerUrl');
+$serviceOffering = $block->getServiceOffering();
+$shipmentId = "";
+$shipmentId = $block->getShipmentId();
+$NotifyCustomer = $block->getNotifyCustomer();
+$ShipmentDetail = $block->IsShipmentDetails();
+if (!empty($shipmentId)) {
+    $formAction = $this->getUrl('sales/order/RoyalShipPrintLabel');
+} else {
+    $formAction = $this->getUrl('sales/order/RoyalPrintLabel');
+}
+$ShipmentFlag = $block->getShipmentFlag();
+if (!empty($ShipmentDetail)) {
+   $ShipmentFlag = 'shipmentonly';
+}
+if (!empty($shipmentId)) {
+    $OrderGridUrl = $block->getOrderDetailUrl();
+} else {
+    $OrderGridUrl = $this->getUrl('sales/order/index');
+}
+$EnhancementUrl = $this->getUrl('sales/order/EnhancementUrl');
+$serviceEnhancementType = $block->IsEnhancementType();
+$CurrentPageUrl = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true])
+?>
+
+<form data-role="royal-service-form" class="form royal-service-form" action="<?php /* @escapeNotVerified */ echo $formAction; ?>" id="royal-service-form" method="post" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" novalidate="novalidate" data-mage-init='{"validation":{}}'>
+    <div class="fieldset-wrapper">
+        <div class="admin__fieldset-wrapper-content">
+            <section class="admin__fieldset">
+                <div class="admin__field">
+                    <label class="admin__field-label req"><?php echo __('Service Type');?></label>
+                    <div class="admin__field-control">
+                        <select class="admin__control-select service-type required" name="service_type" data-validate="{required:true}">
+                            <option value="">--Please Select--</option>
+                            <?php if (!empty($ServiceType)): ?>
+                                <?php foreach ($ServiceType as $key => $ServiceTypeValue):?>
+                                    <?php if (isset($ServiceTypeValue['service_type']) && isset($ServiceTypeValue['service_desc'])): ?>
+                                    <option value="<?php echo $ServiceTypeValue['service_type'] ?>"><?php echo $ServiceTypeValue['service_desc'] ?></option>
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            <?php endif ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label req"><?php echo __('Service Offering');?></label>
+                    <div class="admin__field-control">
+                        <select name="service_offering" class="admin__control-select service-offering required"><option value="">--Please Select--</option></select>
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label req"><?php echo __('Container Type');?></label>
+                    <div class="admin__field-control">
+                        <select name="container_type" class="admin__control-select service-format required"><option value="">--Please Select--</option></select>
+                    </div>
+                </div>
+
+                <?php if (!empty($serviceEnhancementType)): ?>
+                <div class="admin__field">
+                    <label class="admin__field-label"><?php echo __('Service Enhancements');?></label>
+                    <div class="admin__field-control">
+                        <select name="service_enhancement_type" class="admin__control-select service-enhancements"><option value="">--Please Select--</option></select>
+                    </div>
+                </div>
+                <?php endif ?>
+
+                <div class="admin__field">
+                    <label class="admin__field-label"><?php echo __('Notify Customer');?></label>
+                    <div class="admin__field-control">
+                        <select class="admin__control-select" name="notify_customer">
+                            <option value="0">No</option>
+                            <option value="1" <?php if ($NotifyCustomer) { echo "selected";} ?>>Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label"><?php echo __(' Selected Order');?></label>
+                    <div class="admin__field-control">
+                        <span><?php echo $OrderNumber; ?></span>
+                        <input type="hidden" name="selected_order" value="<?php echo $OrderNumber; ?>" />
+                        <input type="hidden" name="order_entity_id" value="<?php echo $OrderEntityId; ?>" />
+                        <input type="hidden" name="shipment_flag" value="<?php echo $ShipmentFlag; ?>" />
+                        <input type="hidden" name="shipment_entity_id" value="<?php echo $shipmentId; ?>" />
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label"></label>
+                    <div class="admin__field-control">
+                        <button type="submit" title="Submit" class="action submit primary">
+                            <span>Proceed</span>
+                        </button>
+                        <a style="float:right;line-height: 33px;" class="action secondary" href="<?php echo $OrderGridUrl; ?>">Go Back</a>
+                    </div>
+                </div>
+                <input type="hidden" name="form_key" value="<?php echo $block->getFormKey() ?>" />
+                <input type="hidden" name="current_page_url" value="<?php echo $CurrentPageUrl; ?>" />
+            </section>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+require(
+    [
+        "jquery"
+    ],
+    function($) {
+        $('.service-type').change(function() {
+            var serviceOfferingUrl = "<?php echo $serviceOfferingUrl; ?>";
+            var service_type = $('.service-type option:selected').val();
+            $.ajax({
+                url: serviceOfferingUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: { servicetype : service_type },
+                showLoader: true,
+                success: function(response) {
+                    $('.service-offering').children('option:not(:first)').remove();
+                    if (response) {
+                        $.each(response, function(key, val){
+                            $(".service-offering").append("<option value='" + val.service_offering_code + "'>" + val.service_offering_name + "</option>")
+                        });
+                    }
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log("Error :", errorThrown);
+                }
+            });
+        });
+
+        $('.service-offering').change(function() {
+            var ServiceOfferType = $('.service-type option:selected').val();
+            var service_offering = $('.service-offering option:selected').val();
+            var ContainerUrl = "<?php echo $containerurl; ?>";
+            $.ajax({
+                url: ContainerUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    ServiceOfferType : ServiceOfferType,
+                    serviceoffering : service_offering,
+                },
+                showLoader: true,
+                success: function(response) {
+                    $('.service-format').children('option:not(:first)').remove();
+                    if (response) {
+                         $.each(response, function(key, val){
+                            if (val.service_format_code == "I_N") {
+                                val.service_format_code = "N";
+                            }
+                            if (val.service_format_code == "I_P") {
+                                val.service_format_code = "P";
+                            }
+                            $(".service-format").append("<option value='" + val.service_format_code + "'>" + val.service_format_desc + "</option>")
+                        });
+                    }
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log("Error :", errorThrown);
+                }
+            });
+        });
+
+        $('.service-format').change(function() {
+            var getServiceType = $('.service-type option:selected').val();
+            var getServiceOffering = $('.service-offering option:selected').val();
+            var getServiceFormat = $('.service-format option:selected').val();
+            var EnhancementUrl = "<?php echo $EnhancementUrl; ?>";
+            $.ajax({
+                url: EnhancementUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: { getServiceType : getServiceType,
+                    getServiceOffering : getServiceOffering,
+                    getServiceFormat : getServiceFormat,
+                 },
+                showLoader: true,
+                success: function(response) {
+                    $('.service-enhancements').children('option:not(:first)').remove();
+                    if (response) {
+                         $.each(response, function(key, val){
+                            $(".service-enhancements").append("<option value='" + val.enhancement_type + "'>" + val.enhancement_desc + "</option>")
+                        });
+                    }
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log("Error :", errorThrown);
+                }
+            });
+        });
+    });
+</script>
+
+<style type="text/css">
+.admin__field:not(.admin__field-option) > .admin__field-label.req::after{
+    content: "*";
+    color: #ff0000;
+    margin-left: 5px;
+}
+</style>

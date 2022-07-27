@@ -1,0 +1,17 @@
+<?php
+
+/** @var \Chilliapple\Governments\Block\Government\Name $block */ ?>
+
+<?php $government = $block->getGovernment();?>
+<?php if ($government): ?>
+    <div class="government">
+        <strong><?= $block->escapeHtml(__($block->getLabel())); ?></strong>
+        <?php if (!$block->getData('no_url')): ?>
+            <a href="<?= $block->escapeUrl($block->getGovernmentUrl());?>">
+                <?= $block->escapeHtml(__($government->getTitle())); ?>
+            </a>
+        <?php else: ?>
+            <?= $block->escapeHtml(__($government->getTitle())); ?>
+        <?php endif;?>
+    </div>
+<?php endif;

@@ -1,0 +1,61 @@
+<?php
+
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var $listGovernment \Chilliapple\Governments\ViewModel\Government\ListGovernment */
+$listGovernment = $block->getData('listGovernment');
+/** @var $formatter \Chilliapple\Governments\ViewModel\Formatter */
+$formatter = $block->getData('formatter');
+/** @var $governmentUrl \Chilliapple\Governments\ViewModel\Government\Url */
+$governmentUrl = $block->getData('governmentUrl');
+?>
+
+<?php if ($listGovernment): ?>
+    <?php $listGovernment->setLabel($block->getData('label') ?? '');?>
+    <?php $listGovernment->setPageVarName($block->getData('page_var_name') ?? '');?>
+    <?php $listGovernment->setPageFragment($block->getData('page_fragment') ?? '');?>
+    <?php $listGovernment->setPageLimitVarName($block->getData('page_limit_var_name') ?? '');?>
+    <?php $listGovernment->setFilters($block->getData('filters') ?? []);?>
+    <?php if ($listGovernment->getPageFragment()): ?>
+        <div id="<?= $block->escapeHtmlAttr($listGovernment->getPageFragment());?>"></div>
+    <?php endif;?>
+    <?php if ($listGovernment->getLabel()): ?>
+        <h2><?= $block->escapeHtml($listGovernment->getLabel());?></h2>
+    <?php endif;?>
+    <?php $governments = $listGovernment->getCollection();?>
+    <?php if ($governments->getSize()): ?>
+
+        <div class="government-list">
+            <?php foreach ($governments as $government): ?>
+                <?php /** @var \Chilliapple\Governments\Model\Government $government */?>
+                <div class="government-item">
+                    <div class="government-feature-image">
+                        <?php $src = $formatter->formatHtml(
+                            $government->getFeatureImage(),
+                            [
+                                'type' => 'image',
+                                'resize' => [200],
+                                'path' => 'governments/government/image'
+                            ]
+                        ); ?>
+                        <img src="<?= $block->escapeUrl($src); ?>" alt="<?= $block->escapeHtml($government->getTitle()); ?>" />
+                    </div>
+                    <div class="government-details">
+                        <div class="government-title">
+                        <h4><?= $block->escapeHtml($government->getTitle()); ?></h4>
+                        </div>
+                        <div class="government-description">
+                        <?= $government->getDescription(); ?>
+                        </div>
+                        <div class="government-government-link" title="<?= __("View Collections");?>">
+                            <a href="<?= $government->getGovernmentLink(); ?>">
+                                <?= __("View Collections");?>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+            <?= $block->escapeHtml(__('There are no Governments at this moment')); ?>
+    <?php endif ?>
+<?php endif;

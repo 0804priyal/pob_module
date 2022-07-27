@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Chilliapple\Redirect\Api\RedirectRepositoryInterface" type="Chilliapple\Redirect\Model\RedirectRepository"/>
+    <preference for="Chilliapple\Redirect\Api\Data\RedirectInterface" type="Chilliapple\Redirect\Model\Redirect"/>
+    <preference for="Chilliapple\Redirect\Api\Data\RedirectSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="chilliapple_redirect_redirect_listing_data_source" xsi:type="string">ChilliappleRedirectRedirectGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Redirect\Model\ResourceModel\Redirect\Collection">
+        <arguments>
+            <argument name="model" xsi:type="string">Chilliapple\Redirect\Model\Redirect</argument>
+            <argument name="resourceModel" xsi:type="string">Chilliapple\Redirect\Model\ResourceModel\Redirect</argument>
+            <argument name="idFieldName" xsi:type="string">redirect_id</argument>
+            <argument name="eventPrefix" xsi:type="string">chilliapple_redirect_redirect_collection</argument>
+            <argument name="eventObject" xsi:type="string">redirect_collection</argument>
+        </arguments>
+    </type>
+    <virtualType name="ChilliappleRedirectRedirectGridCollection" type="Chilliapple\Redirect\Model\ResourceModel\Redirect\Collection">
+        <arguments>
+            <argument name="model" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\Document</argument>
+            <argument name="resourceModel" xsi:type="string">Chilliapple\Redirect\Model\ResourceModel\Redirect</argument>
+            <argument name="idFieldName" xsi:type="string">redirect_id</argument>
+            <argument name="eventPrefix" xsi:type="string">chilliapple_redirect_redirect_collection</argument>
+            <argument name="eventObject" xsi:type="string">redirect_collection</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ChilliappleRedirectRedirectFileUploader" type="Chilliapple\Redirect\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">Chilliapple\Redirect\Model\UploadPath::REDIRECT_FILE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">Chilliapple\Redirect\Model\UploadPath::REDIRECT_FILE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="csv" xsi:type="string">csv</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Chilliapple\Redirect\Controller\Adminhtml\Redirect\File\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">ChilliappleRedirectRedirectFileUploader</argument>
+            <argument name="aclResource" xsi:type="string">Chilliapple_Redirect::redirect_redirect</argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Redirect\Model\UploaderPool">
+        <arguments>
+            <argument name="uploaders" xsi:type="array">
+                <item name="file" xsi:type="object">ChilliappleRedirectRedirectFileUploader</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

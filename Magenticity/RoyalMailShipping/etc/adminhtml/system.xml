@@ -1,0 +1,90 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenticity" translate="label" sortOrder="200">
+            <label>Magenticity</label>
+        </tab>
+         <section id="royalmailshipping" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1">
+            <label>RoyalMail Shipping</label>
+            <tab>magenticity</tab>
+            <resource>Magenticity_RoyalMailShipping::royalmailshipping</resource>
+            <group id="trackingapi" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
+                <label>Basic Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
+                    <label>Enable</label>
+                    <config_path>royalmailshipping/trackingapi/enable</config_path>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="api_username" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1">
+                    <label>API Username</label>
+                    <config_path>royalmailshipping/trackingapi/api_username</config_path>
+                </field>
+
+                <field id="api_password" translate="label" type="obscure" sortOrder="30" showInDefault="1" showInWebsite="1">
+                    <label>API Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <config_path>royalmailshipping/trackingapi/api_password</config_path>
+                </field>
+
+                <field id="api_applicationId" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1">
+                    <label>Application ID</label>
+                    <config_path>royalmailshipping/trackingapi/api_applicationId</config_path>
+                </field>
+
+                <field id="api_clientId" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1">
+                    <label>Client ID</label>
+                    <config_path>royalmailshipping/trackingapi/api_clientId</config_path>
+                </field>
+
+                <field id="api_clientSecret" translate="label" type="obscure" sortOrder="60" showInDefault="1" showInWebsite="1">
+                    <label>Client Secret</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <config_path>royalmailshipping/trackingapi/api_clientSecret</config_path>
+                </field>
+
+                <field id="service_offering" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1">
+                    <label>Service Offerings</label>
+                    <source_model>Magenticity\RoyalMailShipping\Model\Adminhtml\Source\ServiceOffering</source_model>
+                    <config_path>royalmailshipping/trackingapi/service_offering</config_path>
+                </field>
+
+                <field id="allowed_container" translate="label" type="multiselect" sortOrder="80" showInDefault="1" showInWebsite="1">
+                    <label>Allowed Containers</label>
+                    <source_model>Magenticity\RoyalMailShipping\Model\Adminhtml\Source\AllowedContainer</source_model>
+                    <config_path>royalmailshipping/trackingapi/allowed_container</config_path>
+                </field>
+
+                <field id="service_enhancement" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1">
+                    <label>Include Service Enhancement</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>royalmailshipping/trackingapi/service_enhancement</config_path>
+                </field>
+
+                <field id="service_enhancement_type" translate="label" type="multiselect" sortOrder="100" showInDefault="1" showInWebsite="1">
+                    <label>Service Enhancement Types</label>
+                    <source_model>Magenticity\RoyalMailShipping\Model\Adminhtml\Source\ServiceEnhancement</source_model>
+                    <config_path>royalmailshipping/trackingapi/service_enhancement_type</config_path>
+                    <depends>
+                        <field id="service_enhancement">1</field>
+                    </depends>
+                </field>
+
+                <field id="signature_required" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1">
+                    <label>Include Signature Required</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>royalmailshipping/trackingapi/signature_required</config_path>
+                </field>
+
+                <field id="signature_required_offering" translate="label" type="multiselect" sortOrder="120" showInDefault="1" showInWebsite="1">
+                    <label>Signature required for offerings</label>
+                    <source_model>Magenticity\RoyalMailShipping\Model\Adminhtml\Source\SignatureOffer</source_model>
+                    <config_path>royalmailshipping/trackingapi/signature_required_offering</config_path>
+                    <depends>
+                        <field id="signature_required">1</field>
+                    </depends>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

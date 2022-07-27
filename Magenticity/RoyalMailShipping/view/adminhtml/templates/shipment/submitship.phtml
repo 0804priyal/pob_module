@@ -1,0 +1,87 @@
+<?php
+$RoyalShipmentBtn = $this->getUrl('sales/order/SubmitRoyalShipment', ['order_id' => $this->getOrderId()]);
+?>
+<div class="order-history-comments-actions actions">
+    <button id="submit-royalmail-shipment" title="Royalmail Shipment" type="button" class="action-default scalable submit-button primary" onclick="submitRoyalmailShipment(this);" data-ui-id="order-items-submit-button">
+        <span>Royalmail Shipment</span>
+    </button>
+</div>
+
+<style type="text/css">
+.order-history-comments-actions {
+    display: inline-block;
+    float: right;
+    margin-left: 15px;
+}
+</style>
+
+<script>
+require([
+    "jquery",
+    "Magento_Ui/js/modal/alert",
+    "prototype"
+], function(jQuery, alert){
+
+var sendEmailCheckbox = $('send_email');
+if (sendEmailCheckbox) {
+    var notifyCustomerCheckbox = $('notify_customer');
+    var shipmentCommentText = $('shipment_comment_text');
+    Event.observe(sendEmailCheckbox, 'change', bindSendEmail);
+    bindSendEmail();
+}
+function bindSendEmail() {
+    if (sendEmailCheckbox.checked == true) {
+        notifyCustomerCheckbox.disabled = false;
+    }
+    else {
+        notifyCustomerCheckbox.disabled = true;
+    }
+}
+window.toggleCreateLabelCheckbox = function() {
+    var checkbox = $('create_shipping_label');
+    var submitButton = checkbox.up('.order-totals').select('.submit-button span')[0];
+    if (checkbox.checked) {
+        submitButton.innerText += '...';
+    } else {
+        submitButton.innerText = submitButton.innerText.replace(/\.\.\.$/, '');
+    }
+}
+window.submitRoyalmailShipment = function(btn) {
+    if (!royalvalidQtyItems()) {
+        alert({
+            content: '<?= /* @escapeNotVerified */ __('Invalid value(s) for Qty to Ship') ?>'
+        });
+        return;
+    }
+    var checkbox = $(btn).up('.order-totals').select('#create_shipping_label')[0];
+    if (checkbox && checkbox.checked) {
+        packaging.showWindow();
+    } else {
+        disableElements('submit-button');
+
+        jQuery('#edit_form').on('invalid-form.validate', function() {
+            enableElements('submit-button');
+            jQuery('#edit_form').off('invalid-form.validate');
+        });
+        jQuery('#edit_form').attr("action", "<?php echo $RoyalShipmentBtn; ?>");
+        jQuery('#edit_form').triggerHandler('save');
+    }
+}
+window.royalvalidQtyItems = function() {
+    var valid = true;
+    $$('.qty-item').each(function(item) {
+        var val = parseFloat(item.value);
+        if (isNaN(val) || val < 0) {
+            valid = false;
+        }
+    });
+    return valid;
+}
+
+window.bindSendEmail = bindSendEmail;
+window.shipmentCommentText = shipmentCommentText;
+window.notifyCustomerCheckbox = notifyCustomerCheckbox;
+window.sendEmailCheckbox = sendEmailCheckbox;
+});
+</script>
+

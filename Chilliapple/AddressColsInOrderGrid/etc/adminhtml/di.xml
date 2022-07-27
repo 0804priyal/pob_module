@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+     <plugin name="chilliapple_addresscolsinordergrid_plugin_view_element_uicomponent_dataprovider_collectionfactory"
+            type="Chilliapple\AddressColsInOrderGrid\Plugin\PluginAddDataToSalesOrdersGrid"
+            sortOrder="1"
+            disabled="false"/>
+    </type>
+</config>

@@ -1,0 +1,28 @@
+{
+  "name": "chilliapple/module-governments",
+  "description": "Chilliapple_Governments magento 2 extension",
+  "require": {
+    "magento/module-backend": "*",
+    "magento/module-config": "*",
+    "magento/module-ui": "*",
+    "magento/framework": "*",
+    "magento/module-theme": "*",
+    "magento/module-widget": "*",
+    "magento/module-media-storage": "*",
+    "magento/module-store": "*",
+    "php": "~7.1.3||~7.2.0||~7.3.0||~7.4.0"
+  },
+  "type": "magento2-module",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Chilliapple\\Governments\\": ""
+    }
+  }
+}

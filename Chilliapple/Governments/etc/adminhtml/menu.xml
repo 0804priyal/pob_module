@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Chilliapple_Governments::governments_government"
+             title="Governments"
+             module="Chilliapple_Governments"
+             sortOrder="100"
+             action="governments/government/"
+             resource="Chilliapple_Governments::governments_government"
+             parent="Magento_Cms::cms_page"
+        />
+    </menu>
+</config>

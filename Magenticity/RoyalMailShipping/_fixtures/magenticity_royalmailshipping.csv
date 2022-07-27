@@ -1,0 +1,170 @@
+6,BPL,Royal Mail 1st/2nd Class
+7,BPR,Royal Mail 1st/2nd Class Signed For
+8,CRL,Royal Mail 24/ Royal Mail 48 Standard/Signed For (Parcel - Daily Rate Service)
+9,DE1,International Business Parcels Zero Sort High Volume Priority
+10,DE3,International Business Parcels Zero Sort High Vol Economy
+11,DE4,International Business Parcels Zero Srt Low Volume Priority
+12,DE6,International Business Parcels Zero Sort Low Vol Economy
+13,DG1,International Business Mail Large Letter Country Sort High Volume Priority
+14,DG3,International Business Mail Large Letter Ctry Sort High Vol Economy
+15,DG4,International Business Mail Large Letter Country Sort Low Volume Priority
+16,DG6,International Business Mail Large Letter Ctry Sort Low Vol Economy
+17,FS1,Royal Mail 24 Standard/Signed For Large Letter (Flat Rate Service)
+18,FS2,Royal Mail 48 Standard/Signed For Large Letter (Flat Rate Service)
+19,FS7,Royal Mail 24 (Presorted) (Large Letter)
+20,FS8,Royal Mail 48 (Presorted) (Large Letter)
+21,IE1,International Business Parcels Zone Sort Priority Service
+22,IE3,International Business Parcels Zone Sort Economy Service
+23,IG1,International Business Mail Large Letter Zone Sort Priority
+24,IG3,International Business Mail Large Letter Zone Sort Economy
+25,IG4,International Business Mail Large Letter Zone Sort Priority Machine
+26,IG6,International Business Mail Large Letter Zone Srt Economy Machine
+27,LA1,Special Delivery Guaranteed By 1PM LA (£500)
+28,LA2,Special Delivery Guaranteed By 1PM LA (£1000)
+29,LA3,Special Delivery Guaranteed By 1PM LA (£2500)
+30,LA4,Special Delivery Guaranteed By 9AM LA (£50)
+31,LA5,Special Delivery Guaranteed By 9AM LA (£1000)
+32,LA6,Special Delivery Guaranteed By 9AM LA (£2500)
+33,MB1,INTL BUS PARCELS PRINT DIRECT PRIORITY
+34,MB2,INTL BUS PARCELS PRINT DIRECT STANDARD
+35,MB3,INTL BUS PARCELS PRINT DIRECT ECONOMY
+36,MP0,International Business Parcels Signed Extra Compensation (Country Pricing)
+37,MP1,International Business Parcels Tracked (Zonal Pricing)
+38,MP4,International Business Parcels Tracked Extra Comp (Zonal Pricing)
+39,MP5,International Business Parcels Signed (Zonal Pricing)
+40,MP6,International Business Parcels Signed Extra Compensation (Zonal Pricing)
+41,MP7,International Business Parcels Tracked (Country Pricing)
+42,MP8,International Business Parcels Tracked Extra Comp (Country Pricing)
+43,MP9,International Business Parcels Signed (Country Pricing)
+44,MPB,International Business Parcel Tracked Boxable Extra Comp (Country Pricing)
+45,MPF,International Business Parcel Tracked High Vol. (Country Pricing)
+46,MPG,International Business Parcels Tracked & Signed High Vol. (Country Pricing)
+47,MPH,International Business Parcel Signed High Vol. (Country Pricing)
+48,MPI,International Business Parcel Tracked High Vol. Extra Comp (Country Pricing)
+49,MPJ,International Business Parcels Tracked & Signed High Vol. Extra Comp (Country Pricing)
+50,MPK,International Business Parcel Signed High Vol. Extra Comp (Country Pricing)
+51,MPL,International Business Mail Tracked High Vol. (Country Pricing)
+52,MPM,International Business Mail Tracked & Signed High Vol. (Country Pricing)
+53,MPN,International Business Mail Signed High Vol. (Country Pricing)
+54,MPO,International Business Mail Tracked High Vol. Extra Comp (Country Pricing)
+55,MPP,International Business Mail Tracked & Signed High Vol. Extra Comp (Country Pricing)
+56,MPQ,International Business Mail Signed High Vol. Extra Comp (Country Pricing)
+57,MPR,International Business Parcel Tracked Boxable (Country Pricing)
+58,MPT,International Business Parcel Tracked Boxable High Vol. (Country Pricing)
+59,MPU,International Business Parcel Tracked Boxable Extra Comp (Country Pricing)
+60,MPV,International Business Parcel Zero Sort Boxable Low Vol. Priority
+61,MPW,International Business Parcel Zero Sort Boxable Low Vol. Economy
+62,MPX,International Business Parcel Zero Sort Boxable High Vol. Priority
+63,MPY,International Business Parcel Zero Sort Boxable High Vol. Economy
+64,MTA,International Business Parcels Tracked & Signed (Zonal Pricing)
+65,MTB,International Business Parcels Tracked & Signed Extra Compensation (Zonal Pricing)
+66,MTC,International Business Mail Tracked & Signed (Zonal Pricing)
+67,MTD,International Business Mail Tracked & Signed Extra Compensation (Zonal Pricing)
+68,MTE,International Business Parcels Tracked & Signed (Country Pricing)
+69,MTF,International Business Parcels Tracked & Signed Extra Compensation (Country Pricing)
+70,MTG,International Business Mail Tracked & Signed (Country Pricing)
+71,MTH,International Business Mail Tracked & Signed Extra Compensation (Country Pricing)
+72,MTI,International Business Mail Tracked (Zonal Pricing)
+73,MTJ,International Business Mail Tracked Extra Comp (Zonal Pricing)
+74,MTK,International Business Mail Tracked (Country Pricing)
+75,MTL,International Business Mail Tracked Extra Comp (Country Pricing)
+76,MTM,International Business Mail Signed (Zonal Pricing)
+77,MTN,International Business Mail Signed Extra Compensation (Zonal Pricing)
+78,MTO,International Business Mail Signed (Country Pricing)
+79,MTP,International Business Mail Signed Extra Compensation (Country Pricing)
+80,MTQ,International Business Parcels Zone Sort Plus Priority
+81,MTS,International Business Parcels Zone Sort Plus Economoy
+82,MUU,Intlernational Business Parcels Boxable Max Sort Priority
+83,MUV,International Buiness Prcls Boxable Max Sort Standard
+84,MUW,International Business Parcels Boxable Max Sort Economy
+85,MUA,INTL BUS PARCELS BOXABLE ZERO SORT PRI
+86,MUB,INTL BUS PARCELS BOXABLE ZERO SORT ECON
+87,MUC,INTL BUS PARCELS BOXABLE ZONE SORT PRI
+88,MUD,INTL BUS PARCELS BOXABLE ZONE SORT ECON
+89,MUE,INTL BUS PRCL TRCKD BOX ZERO SRT XTR CMP
+90,MUF,INTL BUS PARCELS TRACKED BOX ZERO SORT
+91,MUG,INTL BUS PARCELS TRACKED BOX ZONE SORT
+92,MUH,INTL BUS PRCL TRCKD BOX ZONE SRT XTR CMP
+93,MUI,INTL BUS PARCELS TRACKED ZERO SORT
+94,MUJ,INTL BUS PARCEL TRACKED ZERO SRT XTR CMP
+95,MUK,INTL BUS PARCEL TRACKD & SIGNED ZERO SRT
+96,MUL,INT BUS PRCL TRCKD & SGND ZRO SRT XT CMP
+97,MUM,INTL BUS PARCELS SIGNED ZERO SORT
+98,MUN,INTL BUS PARCEL SIGNED ZERO SORT XTR CMP
+99,MUO,INTL BUS MAIL TRACKED ZERO SORT
+100,MUP,INTL BUS MAIL TRACKED ZERO SORT XTRA CMP
+101,MUQ,INTL BUS MAIL TRACKED & SIGNED ZERO SORT
+102,MUR,INT BUS MAIL TRCKD & SGND ZRO SRT XT CMP
+103,MUS,INTL BUS MAIL SIGNED ZERO SORT
+104,MUT,INTL BUS MAIL SIGNED ZERO SORT XTRA COMP
+105,OLA,International Standard On Account
+106,OLS,International Economy On Account
+107,OSA,International Signed On Account (Zonal Pricing)
+108,OSB,International Signed On Account Extra Compensation (Zonal Pricing)
+109,OTA,International Tracked On Account (Zonal Pricing)
+110,OTB,International Tracked On Account Extra Compensation (Zonal Pricing)
+111,OTC,International Tracked & Signed On Account (Zonal Pricing)
+112,OTD,International Tracked & Signed On Account Extra Compensation (Zonal Pricing)
+113,OZ1,International Business Mail Mixed Zone Sort Priority
+114,OZ3,International Business Mail Mixed Zone Sort Economy
+115,OZ4,International Business Mail Mixed Zone Sort Priority Machine
+116,OZ6,International Business Mail Mixed Zone Srt Economy Machine
+117,PK0,Royal Mail 48 (LL) Flat Rate
+118,PK1,Royal Mail 24 Standard/Signed For (Parcel – Sort8 - Flat Rate Service)
+119,PK2,Royal Mail 48 Standard/Signed For (Parcel – Sort8 - Flat Rate Service)
+120,PK3,Royal Mail 24 Standard/Signed For (Parcel - Sort8 - Daily Rate Service)
+121,PK4,Royal Mail 48 Standard/Signed For (Parcel - Sort8 - Daily Rate Service)
+122,PK7,Royal Mail 24 (Presorted) (P)
+123,PK8,Royal Mail 48 (Presorted) (P)
+124,PK9,Royal Mail 24 (LL) Flat Rate
+125,PKB,RM24 (Presorted) (P) Annual Flat Rate
+126,PKD,RM48 (Presorted) (P) Annual Flat Rate
+127,PKK,RM48 (Presorted) (LL) Annual Flat Rate
+128,PKM,RM24 (Presorted)(LL) Annual Flat Rate
+129,PPF,Royal Mail 24/48 Standard/Signed For (Packetpost- Flat Rate Service)
+130,PPJ,Parcelpost Flat Rate (Annual)
+131,PPS,RM24 (LL) Annual Flat Rate
+132,PPT,RM48 (LL) Annual Flat Rate
+133,PS0,International Business Parcels Max Sort Economy Service
+134,PS7,International Business Mail Large Letter Max Sort Priority Service
+135,PS8,International Business Mail Large Letter Max Sort Economy Service
+136,PS9,International Business Parcels Max Sort Priority Service
+137,PSB,International Business Mail Large Letter Max Sort Standard Service
+138,PSC,International Business Parcels Max Sort Standard Service
+139,RM0,Royal Mail 48 (Sort8)(P) Annual Flat Rate
+140,RM1,Royal Mail 24 (LL) Daily Rate
+141,RM2,Royal Mail 24 (P) Daily Rate
+142,RM3,Royal Mail 48 (LL) Daily Rate
+143,RM4,Royal Mail 48 (P) Daily Rate
+144,RM5,Royal Mail 24 (P) Annual Flat Rate
+145,RM6,Royal Mail 48 (P) Annual Flat Rate
+146,RM7,Royal Mail 24 (SORT8) (LL) Annual Flat Rate
+147,RM8,Royal Mail 24 (SORT8) (P) Annual Flat Rate
+148,RM9,Royal Mail 48 (SORT8) (LL) Annual Flat Rate
+149,SD1,Special Delivery Guaranteed By 1PM (£500)
+150,SD2,Special Delivery Guaranteed By 1PM (£1000)
+151,SD3,Special Delivery Guaranteed By 1PM (£2500)
+152,SD4,Special Delivery Guaranteed By 9AM (£50)
+153,SD5,Special Delivery Guaranteed By 9AM (£1000)
+154,SD6,Special Delivery Guaranteed By 9AM (£2500)
+155,STL,Royal Mail 1st Class/ 2nd Class  Standard/Signed For (Letters - Daily Rate service)
+156,TPL,Tracked 48 High Volume Signature/ No Signature
+157,TPM,Tracked 24 High Volume Signature/ No Signature
+158,TPN,Tracked 24 Signature/ No Signature
+159,TPS,Tracked 48 Signature/ No Signature
+160,TRL,Tracked Letter-Boxable 48 High Volume Signature
+161,TRM,Tracked Letter-Boxable 24 High Volume No Signature
+162,TRN,Tracked Letter-Boxable 24 No Signature
+163,TRS,Tracked Letter-Boxable 48 No Signature
+164,TSN,Tracked Returns 24
+165,TSS,Tracked Returns 48
+166,WE1,International Business Parcels Zero Sort Priority
+167,WE3,International Business Parcels Zero Sort Economy
+168,WG1,International Business Mail Large Letter Zero Sort Priority
+169,WG3,International Business Mail Large Letter Zero Sort Economy
+170,WG4,International Business Mail Large Letter Zero Sort Priority Machine
+171,WG6,International Business Mail Large Letter Zero Srt Economy Machine
+172,WW1,International Business Mail Mixed Zero Sort Priority
+173,WW3,International Business Mail Mixed Zero Sort Economy
+174,WW4,International Business Mail Mixed Zero Sort Priority Machine
+175,WW6,International Business Mail Mixd Zero Sort Economy Machine

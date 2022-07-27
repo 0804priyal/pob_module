@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--[+] define the ui config for "government" entity -->
+    <virtualType name="GovernmentsGovernmentUiConfig" type="Chilliapple\Governments\Ui\EntityUiConfig">
+        <arguments>
+            <argument name="interface" xsi:type="string">\Chilliapple\Governments\Api\Data\GovernmentInterface</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name_attribute" xsi:type="string">title</item><!-- this is the attribute / field name that represents your entity -->
+                <item name="labels" xsi:type="array">
+                    <item name="new" xsi:type="string" translatable="true">Add New Government</item>
+                    <item name="back" xsi:type="string" translatable="true">Back to list</item>
+                    <item name="save" xsi:type="string" translatable="true">Save Government</item>
+                    <item name="delete" xsi:type="string" translatable="true">Delete Government</item>
+                    <item name="delete_message" xsi:type="string" translatable="true">Are you sure you want to delete Government?</item>
+                </item>
+                <item name="save" xsi:type="array">
+                    <!-- uncomment lines below to remove the "Save and close" and "Save and duplicate" buttons -->
+                    <!--<item name="allow_close" xsi:type="boolean">false</item>-->
+                    <!--<item name="allow_duplicate" xsi:type="boolean">false</item>-->
+                </item>
+                <item name="list" xsi:type="array">
+                    <item name="page_title" xsi:type="string" translatable="true">Governments</item>
+                </item>
+                <item name="messages" xsi:type="array">
+                    <item name="delete" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">Government successfully deleted</item>
+                        <item name="missing_entity" xsi:type="string" translatable="true">Couldn't find Government to delete</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem deleting the Government</item>
+                    </item>
+                    <item name="save" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">Government successfully saved</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem saving the Government</item>
+                        <item name="duplicate" xsi:type="string" translatable="true">Government duplicated successfully</item>
+                    </item>
+                    <item name="mass_delete" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">%1 Governments were successfully deleted</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem deleting the Government</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--[-] define the ui config for "government" entity -->
+    <!--[+] configure admin controllers to use the ui entity config for "government" -->
+    <type name="Chilliapple\Governments\Controller\Adminhtml\Government\Index">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Governments\Controller\Adminhtml\Government\Edit">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+            <argument name="entityUiManager" xsi:type="object">Chilliapple\Governments\Model\GovernmentUiManager</argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Governments\Controller\Adminhtml\Government\Save">
+        <arguments>
+            <argument name="entityUiManager" xsi:type="object">Chilliapple\Governments\Model\GovernmentUiManager</argument>
+            <argument name="dataProcessor" xsi:type="object">GovernmentsGovernmentSaveDataProcessor</argument>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Governments\Controller\Adminhtml\Government\InlineEdit">
+        <arguments>
+            <argument name="entityUiManager" xsi:type="object">Chilliapple\Governments\Model\GovernmentUiManager</argument>
+            <argument name="dataProcessor" xsi:type="object">Chilliapple\Governments\Ui\SaveDataProcessor\NullProcessor</argument>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Governments\Controller\Adminhtml\Government\Delete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+            <argument name="uiManager" xsi:type="object">Chilliapple\Governments\Model\GovernmentUiManager</argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Governments\Controller\Adminhtml\Government\MassDelete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+            <argument name="uiManager" xsi:type="object">Chilliapple\Governments\Model\GovernmentUiManager</argument>
+            <argument name="collectionProvider" xsi:type="object">Chilliapple\Governments\Model\GovernmentUiCollectionProvider</argument>
+        </arguments>
+    </type>
+    <type name="Chilliapple\Governments\Controller\Adminhtml\Government\Image\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">GovernmentsGovernmentImageUploader</argument>
+        </arguments>
+    </type>
+    <virtualType name="GovernmentsGovernmentImageUploader" type="Chilliapple\Governments\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">governments/government/tmp/image</argument>
+            <argument name="basePath" xsi:type="string">governments/government/image</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--[+] configure admin controllers to use the ui entity config for "government" -->
+    <virtualType name="GovernmentsGovernmentSaveImageProcessor" type="Chilliapple\Governments\Ui\SaveDataProcessor\Upload">
+        <arguments>
+            <argument name="fileInfo" xsi:type="object">GovernmentsGovernmentImageInfo</argument>
+            <argument name="uploader" xsi:type="object">GovernmentsGovernmentImageUploader</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="feature_image" xsi:type="string">feature_image</item>
+            </argument>
+            <argument name="strict" xsi:type="boolean">true</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GovernmentsGovernmentSaveDataProcessor" type="Chilliapple\Governments\Ui\SaveDataProcessor\CompositeProcessor">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="image" xsi:type="object">GovernmentsGovernmentSaveImageProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="GovernmentsGovernmentFormImageModifier" type="Chilliapple\Governments\Ui\Form\DataModifier\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">GovernmentsGovernmentImageUploader</argument>
+            <argument name="fileInfo" xsi:type="object">GovernmentsGovernmentImageInfo</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="feature_image" xsi:type="string">feature_image</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GovernmentsGovernmentFormDataModifier" type="Chilliapple\Governments\Ui\Form\DataModifier\CompositeDataModifier">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="image" xsi:type="object">GovernmentsGovernmentFormImageModifier</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GovernmentsGovernmentUiFormDataProvider" type="Chilliapple\Governments\Ui\Form\DataProvider">
+        <arguments>
+            <argument name="primaryFieldName" xsi:type="object">government_id</argument>
+            <argument name="requestFieldName" xsi:type="object">government_id</argument>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+            <argument name="dataModifier" xsi:type="object">GovernmentsGovernmentFormDataModifier</argument>
+            <argument name="collectionProvider" xsi:type="object">Chilliapple\Governments\Model\GovernmentUiCollectionProvider</argument>
+        </arguments>
+    </virtualType>
+    <!--[+] form button configuration for 'government' -->
+    <virtualType name="GovernmentsGovernmentButtonBack" type="Chilliapple\Governments\Block\Adminhtml\Button\Back">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GovernmentsGovernmentButtonSave" type="Chilliapple\Governments\Block\Adminhtml\Button\Save">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GovernmentsGovernmentButtonDelete" type="Chilliapple\Governments\Block\Adminhtml\Button\Delete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+            <argument name="entityUiManager" xsi:type="object">Chilliapple\Governments\Model\GovernmentUiManager</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] form button configuration for 'government' -->
+    <!--[+] configure the grid actions column  for "government" entity-->
+    <virtualType name="GovernmentsGovernmentGridActions" type="Chilliapple\Governments\Ui\Component\Listing\ActionsColumn">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">GovernmentsGovernmentUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] configure the grid actions column  for "government" entity-->
+</config>
